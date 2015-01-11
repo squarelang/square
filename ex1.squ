@@ -1,0 +1,60 @@
+package main 
+import "fmt"
+
+alias Z2 = (int, int)
+alias ZZ = int
+
+add(i,j): ZZ => Z
+  return i + j
+
+add : Z2 => Z, (i, j) ->
+  i+j
+
+needs
+x ? y : z
+
+varName float64
+
+interface geometry
+  area: -> float64
+  perim: -> float64
+  scale: float64 -> float64
+
+struct square
+  width float64
+  height float64
+
+struct circle
+  radius float64
+
+square#area(): -> float64
+  return @width + @height
+
+square#scale(varName): float64 -> float64
+  @width = varName * @width
+  @height = varName * @height
+  return @
+
+circle#area(): -> float64
+  return 2 * math.Pi * @radius * @radius
+
+circle#scale(varName): float64 -> float64
+  @radius = varName * @radius
+  return @
+
+measure(g): geometry ->
+  fmt.Println(g)
+  fmt.Println(g.area())
+
+mysquare := square
+  width:
+    hello: 1
+    goodbye: 2
+  height: 2
+
+mysquare := square{width: 1, height: 2}
+
+mysquare :=
+  square
+    width: 1
+    height: 2
